@@ -1,0 +1,10 @@
+[
+  {
+    "Id": 1,
+    "Name": "Tornillo",
+    "UnitPrice": 2500,
+    "Quantity": 30,
+    "MinStock": 100,
+    "MaxStock": 1000
+  }
+]
