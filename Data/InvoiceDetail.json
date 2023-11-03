@@ -1,9 +1,121 @@
 [
   {
-    "Id": 1,
-    "IdInv": 10001,
+    "Id": 10001,
+    "IdInv": 1000001,
     "IdPro": 1,
-    "Quantity": 30,
-    "Value": 30000
+    "Quantity": 10,
+    "Value": 2000
+  },
+  {
+    "Id": 10002,
+    "IdInv": 1000001,
+    "IdPro": 5,
+    "Quantity": 2,
+    "Value": 2400
+  },
+  {
+    "Id": 10003,
+    "IdInv": 1000002,
+    "IdPro": 2,
+    "Quantity": 5,
+    "Value": 1000
+  },
+  {
+    "Id": 10004,
+    "IdInv": 1000002,
+    "IdPro": 7,
+    "Quantity": 1,
+    "Value": 6000
+  },
+  {
+    "Id": 10005,
+    "IdInv": 1000002,
+    "IdPro": 3,
+    "Quantity": 1,
+    "Value": 1200
+  },
+  {
+    "Id": 10006,
+    "IdInv": 1000003,
+    "IdPro": 4,
+    "Quantity": 1,
+    "Value": 5000
+  },
+  {
+    "Id": 10007,
+    "IdInv": 1000003,
+    "IdPro": 1,
+    "Quantity": 15,
+    "Value": 3000
+  },
+  {
+    "Id": 10008,
+    "IdInv": 1000004,
+    "IdPro": 7,
+    "Quantity": 1,
+    "Value": 6000
+  },
+  {
+    "Id": 10009,
+    "IdInv": 1000005,
+    "IdPro": 6,
+    "Quantity": 2,
+    "Value": 4000
+  },
+  {
+    "Id": 10010,
+    "IdInv": 1000006,
+    "IdPro": 5,
+    "Quantity": 3,
+    "Value": 3600
+  },
+  {
+    "Id": 10011,
+    "IdInv": 1000007,
+    "IdPro": 1,
+    "Quantity": 5,
+    "Value": 1000
+  },
+  {
+    "Id": 10012,
+    "IdInv": 1000007,
+    "IdPro": 2,
+    "Quantity": 5,
+    "Value": 1000
+  },
+  {
+    "Id": 10013,
+    "IdInv": 1000008,
+    "IdPro": 7,
+    "Quantity": 2,
+    "Value": 12000
+  },
+  {
+    "Id": 10014,
+    "IdInv": 1000008,
+    "IdPro": 6,
+    "Quantity": 3,
+    "Value": 6000
+  },
+  {
+    "Id": 10015,
+    "IdInv": 1000009,
+    "IdPro": 4,
+    "Quantity": 1,
+    "Value": 5000
+  },
+  {
+    "Id": 10016,
+    "IdInv": 1000009,
+    "IdPro": 2,
+    "Quantity": 10,
+    "Value": 2000
+  },
+  {
+    "Id": 10017,
+    "IdInv": 1000010,
+    "IdPro": 5,
+    "Quantity": 4,
+    "Value": 4800
   }
 ]

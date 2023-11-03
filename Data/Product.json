@@ -1,10 +1,58 @@
 [
   {
     "Id": 1,
-    "Name": "Tornillo",
-    "UnitPrice": 2500,
+    "Name": "tornillo",
+    "UnitPrice": 200,
+    "Quantity": 100,
+    "MinStock": 50,
+    "MaxStock": 150
+  },
+  {
+    "Id": 2,
+    "Name": "tuerca",
+    "UnitPrice": 200,
+    "Quantity": 80,
+    "MinStock": 60,
+    "MaxStock": 80
+  },
+  {
+    "Id": 3,
+    "Name": "cinta",
+    "UnitPrice": 1200,
+    "Quantity": 18,
+    "MinStock": 25,
+    "MaxStock": 30
+  },
+  {
+    "Id": 4,
+    "Name": "martillo",
+    "UnitPrice": 5000,
+    "Quantity": 4,
+    "MinStock": 10,
+    "MaxStock": 15
+  },
+  {
+    "Id": 5,
+    "Name": "tubo",
+    "UnitPrice": 1200,
     "Quantity": 30,
-    "MinStock": 100,
-    "MaxStock": 1000
+    "MinStock": 15,
+    "MaxStock": 30
+  },
+  {
+    "Id": 6,
+    "Name": "pegante",
+    "UnitPrice": 2000,
+    "Quantity": 5,
+    "MinStock": 5,
+    "MaxStock": 10
+  },
+  {
+    "Id": 7,
+    "Name": "brocha",
+    "UnitPrice": 6000,
+    "Quantity": 10,
+    "MinStock": 5,
+    "MaxStock": 10
   }
 ]

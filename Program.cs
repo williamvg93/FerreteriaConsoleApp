@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using FerreteriaConsoleApp;
 using FerreteriaConsoleApp.Entities;
+using FerreteriaConsoleApp.Querys;
 
 internal class Program
 {
@@ -8,27 +9,24 @@ internal class Program
     {
         Console.WriteLine("Runingggg !");
 
-        List<Product> ProductList = new List<Product>();
-        List<Client> ClientList = new List<Client>();
-        List<Invoice> InvoiceList = new List<Invoice>();
-        List<InvoiceDetail> InvoiceDetailList = new List<InvoiceDetail>();
-        DateTime fecha = new DateTime(2023, 01, 20);
+        List<Product> productList = QProduct.GetProducts();
+        List<Client> clientList = QClient.GetClients();
+        List<Invoice> invoiceList = QInvoice.GetInvoices();
+        List<InvoiceDetail> invDetailList = QInvoiceDetail.GetInvoiceDetails();
 
+        Functions.SaveProduct(productList);
+        Functions.SaveClient(clientList);
+        Functions.SaveInvoice(invoiceList);
+        Functions.SaveInvoiceDetail(invDetailList);
 
-        Product newProduct = new Product(1, "Tornillo", 2500, 30, 100, 1000);
-        Client newClient = new Client(1, "William", "correo@correo.com");
-        Invoice newInvoice = new Invoice(10001, new DateTime(2023, 01, 20), 1, 50000);
-        InvoiceDetail newInvoiceDetail = new InvoiceDetail(1, 10001, 1, 30, 30000);
+        Console.Clear();
+        System.Console.WriteLine();
 
+        /* View All Products */
+        QProduct.ViewAllProduct(productList);
 
-        ProductList.Add(newProduct);
-        ClientList.Add(newClient);
-        InvoiceList.Add(newInvoice);
-        InvoiceDetailList.Add(newInvoiceDetail);
-
-        Functions.SaveProduct(ProductList);
-        Functions.SaveClient(ClientList);
-        Functions.SaveInvoice(InvoiceList);
-        Functions.SaveInvoiceDetail(InvoiceDetailList);
+        System.Console.WriteLine("\n\n");
+        /* See Products that do not have the minimum stock quantities */
+        QProduct.ViewProductsMinStock(productList);
     }
 }
