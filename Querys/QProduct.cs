@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FerreteriaConsoleApp.Dto;
 using FerreteriaConsoleApp.Entities;
 
 namespace FerreteriaConsoleApp.Querys;
@@ -24,25 +25,48 @@ public class QProduct
         return ProductList;
     }
 
-    public static void CreateColumsTable(string title)
-    {
-        Console.WriteLine("{0,52}", $"----- {title} ---- \n");
-
-        Console.WriteLine("{0,-8} {1, -20} {2, -10} {3,-13} {4, -13} {5,3}", "Id", "Name", "Price", "Quantity", "MinStock", "MaxStock");
-    }
-
     public static void ViewAllProduct(List<Product> productList)
     {
-        CreateColumsTable("Product List");
+        Functions.CreateColumsProducts("Product List");
 
         productList.ForEach(p => Console.WriteLine("{0,-8} {1, -20} {2, -10} {3,-13} {4, -13} {5,8}", p.Id, p.Name, p.UnitPrice, p.Quantity, p.MinStock, p.MaxStock));
     }
     public static void ViewProductsMinStock(List<Product> productList)
     {
-        CreateColumsTable("Products that do not have the minimum stock quantities");
+        Functions.CreateColumsProducts("Products that do not have the minimum stock quantities");
 
         var productMinStock = productList.Where(p => p.Quantity < p.MinStock).ToList<Product>();
 
         productMinStock.ForEach(p => Console.WriteLine("{0,-8} {1, -20} {2, -10} {3,-13} {4, -13} {5,8}", p.Id, p.Name, p.UnitPrice, p.Quantity, p.MinStock, p.MaxStock));
+    }
+    public static void ViewProductsNeedStock(List<Product> productList)
+    {
+        Console.WriteLine("{0,48}", "----- Products that need to be ordered ---- \n");
+
+        Console.WriteLine("{0,-8} {1, -20} {2, 5} ", "Id", "Name", "QuantitiesNeeded");
+
+        var productMinStock = productList.Where(p => p.Quantity < p.MaxStock).Select(p => new ProductDto { Name = p.Name, Stock = p.MaxStock - p.Quantity, Id = p.Id }).ToList<ProductDto>();
+
+        productMinStock.ForEach(p => Console.WriteLine("{0,-8} {1, -20} {2, 9}", p.Id, p.Name, p.Stock));
+    }
+
+    public static void TotalInventory(List<Product> productList)
+    {
+        Console.WriteLine("{0,48}", "----- Total inventory value ---- \n");
+
+        var invoiceProducts =
+                    (from pro in productList
+                     select new TotalInventoryDto
+                     {
+                         Total = pro.Quantity * pro.UnitPrice,
+                         Name = pro.Name
+                     }).ToList<TotalInventoryDto>();
+
+        Console.WriteLine("{0,-8} {1, 15}", "Name", "TotalValue");
+        invoiceProducts.ForEach(p => Console.WriteLine("{0,-8} {1, 15}", p.Name, p.Total));
+        System.Console.WriteLine();
+        var total = invoiceProducts.Sum(p => p.Total);
+        Console.WriteLine($"Total inventory value : {total}");
+
     }
 }
