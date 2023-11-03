@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ConsoleTables;
 using FerreteriaConsoleApp.Dto;
 using FerreteriaConsoleApp.Entities;
 
@@ -29,18 +30,19 @@ public class QInvoice
 
     public static void ViewInvoicesByMonth(List<Invoice> invoicesList)
     {
-        string respMont = Functions.GetExactVal("int", "2", "Enter the numbre of Month(01 - 12), Example 05", "only numbers");
+        string respMont = Functions.GetExactVal("int", "2", "number of Month(01 - 12), Example 05", "only numbers");
 
         Console.Clear();
-        Console.WriteLine("{0,52}", $"----- Invoices ---- \n");
-        Console.WriteLine("{0,-8} {1, 20} {2,25} ", "Id", "Date", "Total");
+        Console.WriteLine("{0,20}", $"----- Invoices ---- \n");
 
         var invoicesMonth = invoicesList.Where(i => i.CreatedDate.ToString("MM") == respMont).OrderBy(i => i.CreatedDate).ToList<Invoice>();
 
         if (invoicesMonth.Count > 0)
         {
-            invoicesMonth.ForEach(i => Console.WriteLine("{0,-8} {1,35} {2,10}", i.Id, i.CreatedDate.ToString("D"), i.Total));
-            System.Console.WriteLine("\n");
+            var table = new ConsoleTable("Id", "CreationDate", "Total");
+            invoicesMonth.ForEach(i => table.AddRow(i.Id, i.CreatedDate.ToString("D"), i.Total));
+            table.Write();
+            System.Console.WriteLine();
             Console.WriteLine($"Total value of Invoices: {invoicesMonth.Sum(i => i.Total)}");
         }
         else
@@ -51,12 +53,9 @@ public class QInvoice
     }
     public static void ViewInvoiceProducts(List<Invoice> invoicesList, List<Product> productList, List<InvoiceDetail> invoiceDetailsList)
     {
-        int idInvo = int.Parse(Functions.GetExactVal("int", "7", "Enter the invoice ID", "only numbers"));
+        int idInvo = int.Parse(Functions.GetExactVal("int", "7", "invoice ID", "only numbers"));
         Console.Clear();
-        Console.WriteLine("{0,52}", $"----- List of Product of Invoice #{idInvo}  ---- \n");
-
-        Console.WriteLine("{0,-8} {1, 12} {2, 12} ", "Id", "Name", "Quantity");
-
+        Console.WriteLine($"List of Product of Invoice # {idInvo} \n");
         var invoiceProducts =
                     (from inv in invoicesList
                      join invDet in invoiceDetailsList
@@ -71,11 +70,11 @@ public class QInvoice
                          Quantity = invDet.Quantity
                      }).ToList<InvoiceProductsDto>();
 
-        invoiceProducts.ForEach(i => Console.WriteLine("{0,-8} {1,12} {2,12}", i.Id, i.Name, i.Quantity));
-
         if (invoiceProducts.Count > 0)
         {
-            invoiceProducts.ForEach(i => Console.WriteLine("{0,-8} {1,12} {2,12}", i.Id, i.Name, i.Quantity));
+            var table = new ConsoleTable("Id", "Name", "Quantity");
+            invoiceProducts.ForEach(i => table.AddRow(i.Id, i.Name, i.Quantity));
+            table.Write();
         }
         else
         {
